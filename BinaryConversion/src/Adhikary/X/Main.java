@@ -11,7 +11,7 @@ public class Main {
 
 //        System.out.println((int)Math.floor(Math.log(1)/Math.log(2)));
 
-        System.out.println(convertToBinary(25));
+        System.out.println(convertToBinary(47899));
 
 
     }
@@ -20,7 +20,18 @@ public class Main {
     public static String convertToBinary(int n)
     {
 
-
+       if(n==0)
+       {
+           return "0";
+       }
+       if(n==1)
+       {
+           return "1";
+       }
+       if(n==2)
+       {
+           return "10";
+       }
 
         double x = Math.log(n)/Math.log(2);
         double due=n;
