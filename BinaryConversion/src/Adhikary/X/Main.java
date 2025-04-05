@@ -11,7 +11,7 @@ public class Main {
 
         System.out.println((int)Math.floor(Math.log(1)/Math.log(2)));
 
-        System.out.println(convertToBinary(100534));
+        System.out.println(convertToBinary(9));
 
 
     }
@@ -53,9 +53,12 @@ public class Main {
 
     }
 
-       return binaryArr.stream()
+        return binaryArr.stream()
+                .map((i)->i+"")
+                .collect(()->new ArrayList<>(),(ArrayList<String> e1,String e2)->e1.add(e2),(e3,e4)->e3.addAll(e4)).reversed()
 
+              .stream()
+        .reduce("",(s,s1)->s+""+s1);
 
-                .collect(()->new ArrayList<>(),(ArrayList<Integer> e1,Integer e2)->e1.add(e2),(e3,e4)->e3.addAll(e4)).reversed().toString();
 }
     }
