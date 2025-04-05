@@ -9,9 +9,9 @@ public class Main {
     public static void main(String... args)
     {
 
-        System.out.println((int)Math.floor(Math.log(1)/Math.log(2)));
+//        System.out.println((int)Math.floor(Math.log(1)/Math.log(2)));
 
-        System.out.println(convertToBinary(9));
+        System.out.println(convertToBinary(25));
 
 
     }
@@ -55,10 +55,9 @@ public class Main {
 
         return binaryArr.stream()
                 .map((i)->i+"")
-                .collect(()->new ArrayList<>(),(ArrayList<String> e1,String e2)->e1.add(e2),(e3,e4)->e3.addAll(e4)).reversed()
-
+                .collect(()->new ArrayList<>(),(ArrayList<String> e1,String e2)->e1.add(e2),(e3,e4)->e3.addAll(e4)).reversed() // This reversed () method works , because i am using Java 21+ older versions do not return the reversed immutable view of the list
+//   Algorithm Written and Designed by Bishal Adhikary :-)
               .stream()
         .reduce("",(s,s1)->s+""+s1);
-
-}
+    }
     }
