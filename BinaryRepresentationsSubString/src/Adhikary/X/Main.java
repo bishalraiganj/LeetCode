@@ -8,10 +8,10 @@ public class Main {
     public static void main(String... args)
     {
 
-        System.out.println(convertToBinary(15));
+        System.out.println(convertToBinary(9));
         System.out.println("-".repeat(50));
 
-        System.out.println(queryString("110101011011000011011111000000", 15));
+        System.out.println(queryString("110101011011000011011111000000", 8));
 
         System.out.println(allBinaries.toString());
 
@@ -26,23 +26,30 @@ public class Main {
         boolean stringStatus = false;
         for (Character c : s.toCharArray())
         {
-            if(c=='0'||c=='1') {
-                stringStatus = true;
-                continue;
+            if(!(c=='0'||c=='1')) {
+//                stringStatus = true;
+//                continue;
+                return false;
             }
-            stringStatus = false;
+            stringStatus = true;
         }
 
         if(stringStatus&&s.length()<=1000&&s.length()>=1&&n>=1&&n<=Math.pow(10,9)) {
             for (int i = 1; i <= n; i++) {
 
-                if(s.contains(convertToBinary(i)))
+                if(!s.contains(convertToBinary(i)))
                 {
-                    allBinaries.put(i+"",convertToBinary(i));
-                    status = true;
-                    continue;
+//                    allBinaries.put(i+"",convertToBinary(i));
+//                    status = true;
+//                    continue;
+                    return false;
                 }
-                status =false;
+
+
+
+
+                allBinaries.put(i+"",convertToBinary(i));
+                status =true;
             }
         }
         return status;
