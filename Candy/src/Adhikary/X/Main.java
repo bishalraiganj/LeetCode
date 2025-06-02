@@ -13,6 +13,11 @@ public class Main {
 
 		System.out.println(candy(candyArr));
 
+		System.out.println("-".repeat(50));
+
+		int[] arr2 = {0,1,2,5,3,2,7};
+		System.out.println(candy(arr2));
+
 
 
 	}
@@ -121,7 +126,7 @@ public class Main {
 
 					else if(e.getValue() > ratings[e.getKey() - 1 ] && e.getValue() >ratings[e.getKey() + 1 ] )
 					{
-						if(ratings[e.getKey() + 1 ] > ratings[e.getKey() -1])
+						if(copy[e.getKey() + 1 ] > copy[e.getKey() -1])
 						{
 							copy[e.getKey()] = copy[e.getKey() + 1] + 1;
 						}
