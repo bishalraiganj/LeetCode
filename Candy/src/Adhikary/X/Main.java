@@ -33,11 +33,16 @@ public class Main {
 			}
 		}
 
-
-
+		int sum = Arrays.stream(compute(ratings))
+				.reduce(0, (a,b) -> a + b);
+		return sum;
 	}
 
-	public static int compute(int[] ratings)
+
+
+
+
+	public static int[] compute(int[] ratings)
 	{
 		int iterationCounter = 1;
 
@@ -59,7 +64,7 @@ public class Main {
 			{
 				if(e.getValue() == 0 ) {
 					if (e.getKey() > ratings[1]) {
-						copy[0] = ratings[1] + 1;
+						copy[0] = copy[1] + 1;
 						iterationCounter++;
 					} else if(e.getKey() <= ratings[1])
 					{
@@ -69,7 +74,7 @@ public class Main {
 				else if(e.getValue() == ratings.length - 1)
 				{
 					if(e.getKey() > ratings[e.getValue() - 1]) {
-						copy[e.getValue()] = ratings[e.getValue() - 1] + 1;
+						copy[e.getValue()] = copy[e.getValue() - 1] + 1;
 					}
 					else
 					{
@@ -77,8 +82,17 @@ public class Main {
 					}
 
 				}
-				else
-				{
+				else {
+					if (e.getKey() > ratings[e.getValue() + 1] && ratings[e.getValue() + 1] >= ratings[e.getValue() - 1]) {
+						copy[e.getValue()] = copy[e.getValue() + 1] + 1;
+					} else if (e.getKey() > ratings[e.getValue() - 1]) {
+						copy[e.getValue()] = copy[e.getValue() - 1] + 1;
+					}
+					else
+					{
+						copy[e.getValue()] = 1;
+					}
+
 
 
 
@@ -91,6 +105,7 @@ public class Main {
 		}
 
 
+		return copy;
 
 
 
