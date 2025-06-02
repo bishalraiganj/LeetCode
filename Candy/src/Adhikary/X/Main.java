@@ -114,17 +114,32 @@ public class Main {
 
 				}
 				else {
-					if (e.getValue() > ratings[e.getKey() + 1] && ratings[e.getKey() + 1] <= ratings[e.getKey() - 1]) {
-						copy[e.getKey()] = copy[e.getKey() + 1] + 1;
-						iterationCounter++;
-					} else if (e.getValue() > ratings[e.getKey() - 1]) {
-						copy[e.getKey()] = copy[e.getKey() - 1] + 1;
-						iterationCounter++;
+					if (e.getValue() <= ratings[e.getKey() - 1] && e.getValue() <= ratings[e.getKey() + 1])
+					{
+						copy[e.getKey()] = 1;
+					}
+
+					else if(e.getValue() > ratings[e.getKey() - 1 ] && e.getValue() >ratings[e.getKey() + 1 ] )
+					{
+						if(ratings[e.getKey() + 1 ] > ratings[e.getKey() -1])
+						{
+							copy[e.getKey()] = copy[e.getKey() + 1] + 1;
+						}
+						else
+						{
+							copy[e.getKey()] = copy[e.getKey() - 1] + 1;
+						}
 					}
 					else
 					{
-						copy[e.getKey()] = 1;
-						iterationCounter++;
+						if(ratings[e.getKey() - 1] > ratings[e.getKey() + 1])
+						{
+							copy[e.getKey()] = copy[e.getKey() + 1 ] + 1;
+						}
+						else
+						{
+							copy[e.getKey() ]  = copy[e.getKey() - 1] + 1;
+						}
 					}
 
 
