@@ -2,22 +2,22 @@ package Adhikary.X;
 
 import com.sun.source.tree.Tree;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Main {
 
 	public static void main(String... args)
 	{
 
+		int[] candyArr = {8,6,3,1,7,4,2,9,3};
+
+		System.out.println(candy(candyArr));
 
 
 
 	}
 
-	//  Example ratingsArr - [8,6,3,1,7,4,2,9,3] candy vals - [2,3,4,1,3,2,1,2,1]
+	//  Example ratingsArr - [8,6,3,1,7,4,2,9,3] candy vals - [4,3,2,1,3,2,1,2,1]
 	public static int candy(int[] ratings)
 	{
 		if(ratings.length > 2 * (Math.pow(10,4)) )
@@ -47,50 +47,84 @@ public class Main {
 		int iterationCounter = 1;
 
 		int[] copy = new int[ratings.length];
+		int[] sorted = Arrays.copyOf(ratings, ratings.length);
+		Arrays.sort(sorted);
 
 		Map<Integer, Integer> map = new TreeMap<>();
-		for(int i : ratings)
+
+		Map<Integer, Integer> sortedMap = new TreeMap<>(new Comparator<Integer> () {
+
+			@Override
+			public int compare(Integer o1 ,Integer o2)
+			{
+				if(map.get(o1) > map.get(o2))
+				{
+					return 1;
+				}
+				if(map.get(o1) == map.get(o2))
+				{
+					return 1;
+				}
+
+				return -1;
+			}
+		});
+
+
+		for(int i = 0; i < ratings.length ; i++)
 		{
-			map.put(ratings[i],i);
+			map.put(i,ratings[i]);
+		}
+		for(Map.Entry<Integer,Integer> e : map.entrySet())
+		{
+			sortedMap.put(e.getKey(),e.getValue());
 		}
 
-		for(Map.Entry<Integer,Integer> e : map.entrySet())
+		sortedMap.forEach((k,v)-> System.out.println("index: " + k + " rating: " + v + " | " ));
+		for(Map.Entry<Integer,Integer> e : sortedMap.entrySet())
 		{
 			if(iterationCounter == 1)
 			{
-				copy[e.getValue()]=1;
+				copy[e.getKey()]=1;
+				iterationCounter++;
 			}
 			else
 			{
-				if(e.getValue() == 0 ) {
-					if (e.getKey() > ratings[1]) {
+				if(e.getKey() == 0 ) {
+					if (e.getValue() > ratings[1]) {
 						copy[0] = copy[1] + 1;
 						iterationCounter++;
-					} else if(e.getKey() <= ratings[1])
+					} else if(e.getValue() <= ratings[1])
 					{
 						copy[0] = 1;
+						iterationCounter++;
 					}
 				}
-				else if(e.getValue() == ratings.length - 1)
+				else if(e.getKey() == ratings.length - 1)
 				{
-					if(e.getKey() > ratings[e.getValue() - 1]) {
-						copy[e.getValue()] = copy[e.getValue() - 1] + 1;
+					if(e.getValue() > ratings[e.getKey() - 1]) {
+						copy[e.getKey()] = copy[e.getKey() - 1] + 1;
+						iterationCounter++;
 					}
 					else
 					{
-						copy[e.getValue()] = 1 ;
+						copy[e.getKey()] = 1 ;
+						iterationCounter++;
 					}
 
 				}
 				else {
-					if (e.getKey() > ratings[e.getValue() + 1] && ratings[e.getValue() + 1] >= ratings[e.getValue() - 1]) {
-						copy[e.getValue()] = copy[e.getValue() + 1] + 1;
-					} else if (e.getKey() > ratings[e.getValue() - 1]) {
-						copy[e.getValue()] = copy[e.getValue() - 1] + 1;
+					if (e.getValue() > ratings[e.getKey() + 1] && ratings[e.getKey() + 1] <= ratings[e.getKey() - 1]) {
+						copy[e.getKey()] = copy[e.getKey() + 1] + 1;
+						iterationCounter++;
+					} else if (e.getValue() > ratings[e.getKey() - 1]) {
+						copy[e.getKey()] = copy[e.getKey() - 1] + 1;
+						iterationCounter++;
 					}
 					else
 					{
-						copy[e.getValue()] = 1;
+						copy[e.getKey()] = 1;
+						iterationCounter++;
 					}
 
 
@@ -104,6 +138,7 @@ public class Main {
 
 		}
 
+		System.out.println(Arrays.toString(copy));
 
 		return copy;
 
