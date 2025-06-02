@@ -12,7 +12,7 @@ public class Main {
 
 	}
 
-
+	//  Example ratingsArr - [8,6,3,1,7,4,2,9,3] candy vals - [2,3,4,1,3,2,1,2,1]
 	public static int candy(int[] ratings)
 	{
 		if(ratings.length > 2 * (Math.pow(10,4)) )
