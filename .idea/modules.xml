@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BinaryConversion/BinaryConversion.iml" filepath="$PROJECT_DIR$/BinaryConversion/BinaryConversion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BinaryRepresentationsSubString/BinaryRepresentationsSubString.iml" filepath="$PROJECT_DIR$/BinaryRepresentationsSubString/BinaryRepresentationsSubString.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Candy/Candy.iml" filepath="$PROJECT_DIR$/Candy/Candy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IntegerColumnNumberExcelSheet/IntegerColumnNumberExcelSheet.iml" filepath="$PROJECT_DIR$/IntegerColumnNumberExcelSheet/IntegerColumnNumberExcelSheet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/LeetCode.iml" filepath="$PROJECT_DIR$/.idea/LeetCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RegularExpressionMatching/RegularExpressionMatching.iml" filepath="$PROJECT_DIR$/RegularExpressionMatching/RegularExpressionMatching.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WordsAfterPattern/WordsAfterPattern.iml" filepath="$PROJECT_DIR$/WordsAfterPattern/WordsAfterPattern.iml" />
+    </modules>
+  </component>
+</project>

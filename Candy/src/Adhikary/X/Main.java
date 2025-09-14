@@ -20,6 +20,8 @@ public class Main {
 
 
 
+
+
 	}
 
 	//  Example ratingsArr - [8,6,3,1,7,4,2,9,3] candy vals - [4,3,2,1,3,2,1,2,1]
