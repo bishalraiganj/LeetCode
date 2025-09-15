@@ -2,7 +2,7 @@ package Interview150;
 
 import java.util.Arrays;
 
-public class RemoveElement {
+public class RemoveElement27 {
 
 
 	public static void main(String... args)
