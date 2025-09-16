@@ -13,7 +13,7 @@ public class SameTree100 {
 	public boolean isSameTree(TreeNode p, TreeNode q) {
 
 
-
+		return checkTwoTreeStructure(p,q);
 
 	}
 
@@ -26,7 +26,13 @@ public class SameTree100 {
 
 	public static boolean checkTwoTreeStructure(TreeNode p ,TreeNode q)
 	{
-		if(p.val == q.val)
+		if(p==null && q== null)
+		{
+			return true;
+		}
+
+
+	if(p!=null&& q!=null&& p.val == q.val)
 		{
 			boolean left  = true;
 			boolean right = true;
