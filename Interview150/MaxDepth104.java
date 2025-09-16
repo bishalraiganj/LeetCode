@@ -48,6 +48,7 @@ public class MaxDepth104 {
 	{
 
 
+		return traverse(root,0);
 
 	}
 
