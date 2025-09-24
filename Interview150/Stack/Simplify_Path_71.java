@@ -12,9 +12,10 @@ public class Simplify_Path_71 {
 		String s3 ="/.../a/../../b/c/../d/./";
 		String s4 = "/a//b////c/d//././/..";
 		String s5 = "/";
+		String s6 = "/...";
 
 
-		System.out.println(simplifyPath(s4));
+		System.out.println(simplifyPath(s6));
 
 
 
@@ -23,112 +24,72 @@ public class Simplify_Path_71 {
 	public static String simplifyPath(String path) {
 
 
-		if(path!= null && !path.equals("")) {
-
-			// absolute path "/home/user/Documents/../Pictures"
-			//   " /../"
-			Deque<Character> stack = new ArrayDeque<>();
-
-
-			StringJoiner currDirectory = new StringJoiner("");
-			char prevChar = '\u0000';
-			char currChar = '\u0000';
-
-			int length = path.length();
-			int i = 0;
-
-			String[] dirArr = new String[15];
-			int counter = 0;
-
-			while (i < length) {
-				currChar = path.charAt(i);
-
-
-				//"/home/user/Documents/../Pictures"
-				//   "/../"
-				if (prevChar != '/' && currChar == '/')
-				{
-
-					String currDirString = currDirectory.toString();
-//				if(!currDirectory.toString().equals("/..") )
-//				if(  !currDirectory.toString().equals("/.."))
-//				{
-//					canonicalPath.add(dirArr[counter++]);
-//				}
-//				else
-
-					System.out.println(currDirString);
-					if (currDirString.equals("/..")) {
-//					System.out.println(Arrays.toString(dirArr));
-//					System.out.println(currDirString);
-//					System.out.println(counter + " " + dirArr[counter-1]);
-						if(counter!=0) {
-							dirArr[--counter] = "";
-						}
-					}
-//					if(currDirString.equals("/.") || currDirString.equals("/.."))
-//					{
-//						System.out.println(Arrays.toString(dirArr));
-//						System.out.println(currDirString);
-//						System.out.println(counter + " " + dirArr[counter-1]);
-//					}
-
-					if (!currDirString.equals("/..")&& !(currDirString.equals("/.")) && (!currDirString.isEmpty()) && (!currDirString.equals(" "))) {
-
-
-//					counter++;
-						dirArr[counter++] = currDirString;
-					}
-
-
-					stack.push('/');
-
-
-					currDirectory = new StringJoiner("");
-
-					prevChar = '/';
-
-				} else if (currChar != '/') {
-					if (prevChar == '/' && !stack.isEmpty()) {
-						char fwdSlash = stack.pop();
-						currDirectory.add("/");
-					}
-					currDirectory.add("" + currChar);
-					prevChar = currChar;
-				}
-				i++;
-
-				if (i == length) {
-					if(path.equals("/../"))
-					{
-						return "/";
-					}
-					if (currDirectory.toString().equals("/..")) {
-						dirArr[--counter] = "";
-					} else {
-						dirArr[counter] = currDirectory.toString();
-					}
-				}
-			}
-
-
-			StringJoiner canonicalPath = new StringJoiner("");
-
-			System.out.println(counter + ""+(dirArr[counter].isEmpty()));
-			for (int j = 0; j <= counter; j++) {
-				canonicalPath.add(dirArr[j]);
-
-			}
-
-
-		System.out.println(Arrays.toString(dirArr));
-
-
-			return canonicalPath.toString();
+		if(path == null || path.length()==0)
+		{
+			return "";
 		}
 
-		return "";
 
+		//"/home/user/Documents/../Pictures"
+		int len = (path).length();
+		char curr='\u0000';
+		String currDir = "";
+		Deque<String> stack  = new ArrayDeque<>();
+		String canonicalPath = "";
+
+		for(int i = 0 ; i < len ; i++) {
+			curr = path.charAt(i);
+			if (curr == '/')
+			{
+				if(currDir.equals(".."))
+				{
+					if(!stack.isEmpty()) {
+						stack.pop();
+					}
+				}
+				else if(!currDir.equals(".") && !currDir.equals("") )
+				{
+					stack.push("/"+currDir);
+
+				}
+				currDir="";
+			}
+			else
+			{
+				currDir= currDir + curr;
+			}
+		}
+
+
+
+//		System.out.println(currDir) ;
+		if(stack.isEmpty() && (currDir.equals(".") || currDir.equals("..") ||currDir.equals("")) )
+		{
+			stack.push("/");
+		}
+		else if(!currDir.equals("..") && !currDir.equals(".")&& !currDir.equals(""))
+		{
+			stack.push("/"+currDir);
+		}
+		else if(currDir.equals(".."))
+		{
+			if(!stack.isEmpty())
+			{
+				stack.pop();
+				if(stack.isEmpty())
+				{
+					stack.push("/");
+				}
+			}
+		}
+
+//		while(!stack.isEmpty())
+//		{
+//			canonicalPath = canonicalPath + "/"+stack.pop();
+//		}
+
+		return stack.reversed().stream().collect(()->new StringBuilder(""),(StringBuilder sb,String s)->sb.append(s),
+				(StringBuilder a,StringBuilder b)->a.append(b)).toString();
 
 
 	}
