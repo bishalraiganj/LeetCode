@@ -146,7 +146,7 @@ class MinStack2 {
 	public void pop() {
 
 		if(counter !=0) {
-			stack[--counter] = null;
+			counter--; // Resetting is unnecessary since , everything happens using counter field/state only , so did not reset at this index
 		}
 	}
 
@@ -167,3 +167,64 @@ class MinStack2 {
 		return 0;
 	}
 }
+
+
+class MinStack3 {
+
+	int[] mainStack;
+	int[] minStack;
+	int counter=0;
+
+
+
+	public MinStack3() {
+		mainStack = new int[100];
+		minStack = new int[100];
+	}
+
+	public void push(int val) {
+		if(counter == 0 )
+		{
+			mainStack[counter] = val;
+			minStack[counter++] = val;
+
+		}
+		else
+		{
+			mainStack[counter] = val;
+			minStack[counter ] = Math.min(val,minStack[counter - 1]);
+			counter++;
+		}
+	}
+
+	public void pop() {
+		if( counter != 0)
+		{
+			counter--;
+		}
+
+	}
+
+	public int top() {
+
+		if(counter != 0)
+		{
+			return mainStack[counter - 1];
+		}
+
+		return 0;
+	}
+
+	public int getMin()
+	{
+
+		if(counter != 0)
+		{
+			return minStack[counter - 1];
+		}
+		return 0;
+	}
+}
+
+
+
