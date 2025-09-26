@@ -14,6 +14,8 @@ public class Binary_Tree_ZigZag_103 {
 
 	// Final result list where each inner list represents one level
 	List<List<Integer>> levelsList = new ArrayList<>();
+	boolean leftToRightFlag = true;
+
 
 
 	/**
@@ -103,5 +105,63 @@ public class Binary_Tree_ZigZag_103 {
 			}
 		}
 	}
+
+
+
+
+
+	//Simpler , involves traversing twice because of the new ArrayList<>(level) at the end
+
+	public List<List<Integer>> zigzagLevelOrder1(TreeNode root)
+	{
+
+		if(root == null)
+		{
+			return levelsList;
+		}
+
+		queue.offer(root);
+		levelOrderTraversal();
+		return levelsList;
+
+	}
+
+	public void  levelOrderTraversal()
+	{
+		while(!queue.isEmpty())
+		{
+			Deque<Integer> levelQueue = new ArrayDeque<>();
+			int size = queue.size();
+			for(int i = 0 ; i < size ; i++)
+			{
+				TreeNode node = queue.poll();
+				if(leftToRightFlag)
+				{
+					levelQueue.addLast(node.val);
+				}
+				else
+				{
+					levelQueue.addFirst(node.val);
+				}
+
+				if(node.left != null) {
+					queue.offer(node.left);
+				}
+				if(node.right != null)
+				{
+					queue.offer(node.right);
+				}
+			}
+
+			levelsList.add(new ArrayList<>(levelQueue));
+			leftToRightFlag = !leftToRightFlag;
+
+
+		}
+
+
+	}
+
+
 
 }
