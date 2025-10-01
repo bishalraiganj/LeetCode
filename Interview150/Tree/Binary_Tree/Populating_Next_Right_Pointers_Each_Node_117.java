@@ -86,4 +86,41 @@ public class Populating_Next_Right_Pointers_Each_Node_117 {
 
 		levelOrder();
 	}
+
+
+
+	//O(1) space , dummy node approach (most optimal)
+		public Node connect2(Node root)
+		{
+			//Edge Cases Handling
+			if(root == null)
+			{
+				return null;
+			}
+
+			Node curr = root;
+			Node dummy = new Node(0);
+			Node tail=dummy;
+			while(curr!=null) //Level wise traversal
+			{
+				while(curr!=null) // level traversal(traversing each node , processing on them)
+				{
+					if(curr.left!=null)
+					{
+						tail.next = curr.left;
+						tail = curr.left;
+					}
+					if(curr.right!=null)
+					{
+						tail.next = curr.right;
+						tail = curr.right;
+					}
+					curr=curr.next;
+				}
+				curr=dummy.next;
+				dummy.next=null;
+				tail=dummy;
+			}
+			return root;
+		}
 }
