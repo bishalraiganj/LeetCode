@@ -14,7 +14,7 @@ public class Path_Sum_112 {
 		}
 
 		this.targetSum = targetSum;
-		return inOrder(root);
+		return preOrder(root);
 	}
 
 	public boolean preOrder(TreeNode root)
@@ -28,14 +28,14 @@ public class Path_Sum_112 {
 		currTotal+=root.val;
 		boolean leftFlag = false, rightFlag = false;
 
-		if(root.left!= null)  leftFlag = inOrder(root.left);
+		if(root.left!= null)  leftFlag = preOrder(root.left);
 		if(leftFlag)
 		{
 			return true;
 		}
 		else {
 			currTotal-=root.left!=null?root.left.val:0;
-			if (root.right != null) rightFlag = inOrder(root.right);
+			if (root.right != null) rightFlag = preOrder(root.right);
 			if(rightFlag)
 			{
 				return true;
