@@ -17,7 +17,7 @@ public class Path_Sum_112 {
 		return inOrder(root);
 	}
 
-	public boolean inOrder(TreeNode root)
+	public boolean preOrder(TreeNode root)
 	{
 		if(root.left==null && root.right==null)
 		{
