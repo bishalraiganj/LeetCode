@@ -9,7 +9,8 @@ public class SubArray_Sum_Equals_K_560 {
 	{
 		int[] intArr = {1,2,3};
 		int[] intArr2 = {1,1,1};
-		System.out.println(subarraySum(intArr2,2));
+		int[] intArr3 = {1,2,3,5};
+		System.out.println(subarraySum(intArr3,0));
 
 
 	}
