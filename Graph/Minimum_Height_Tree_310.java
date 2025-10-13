@@ -10,7 +10,6 @@ import java.util.Map;
 
 class Minimum_Height_Tree_310 {
 	public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-		boolean[] visited = new boolean[n];
 		Map<Integer,List<Integer>> adj = new HashMap<>();
 
 		for(int i = 0 ; i < n ; i++)
@@ -57,7 +56,7 @@ class Minimum_Height_Tree_310 {
 
 
 
-	public int preOrderDFS(int parent,int node,int currHeight , Map<Integer,List<Integer>> adj)
+	public int postOrderDFS(int parent,int node,int currHeight , Map<Integer,List<Integer>> adj)
 	{
 
 
