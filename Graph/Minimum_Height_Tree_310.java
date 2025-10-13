@@ -32,7 +32,7 @@ class Minimum_Height_Tree_310 {
 		{
 			int l = i;
 
-			int currHeight = preOrderDFS(-1,i,0,adj);
+			int currHeight = postOrderDFS(-1,i,0,adj);
 
 			heightMap.compute(currHeight,(k,v)->{
 				if(v==null)
@@ -70,7 +70,7 @@ class Minimum_Height_Tree_310 {
 
 				if(i != parent)
 				{
-					childGreatest = Math.max(childGreatest,preOrderDFS(node,i,currHeight+1,adj));
+					childGreatest = Math.max(childGreatest,postOrderDFS(node,i,currHeight+1,adj));
 				}
 			}
 			if(childGreatest!=0)
