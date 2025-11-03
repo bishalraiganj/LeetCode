@@ -5,7 +5,7 @@ public class Decode_Ways_91 {
 
 
 
-class Solution {
+class Solution34 {
 	public int numDecodings(String s) {
 
 		int len = s.length();
